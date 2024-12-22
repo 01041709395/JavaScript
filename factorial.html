@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+
+    </body>
+    <script>
+        //팩토리얼 계산기 만들기
+        var n = prompt("숫자를 입력하세요","1");
+        var nFact = 1; // 1를 기본 값으로 지정
+        var i = 2; // 1! = 1 이기 때문에 i = 2부터 시작
+
+        while(i <= n) { //i=n까지 반복
+        nFact *= i; // nFact = nFact*i
+        i++;
+        }
+
+        document.write(n + "!=" + nFact);
+    </script>
+</html>
