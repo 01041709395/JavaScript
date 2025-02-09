@@ -1,28 +1,85 @@
-
+const fs = require('fs');
+const main_view = fs.readFileSync('./index.html');
+const orderlist_view = fs.readFileSync('./orderlist.html');
 
 const mariadb = require('./database/connect/mariadb');
 
-function main(response) { // /경로로 가면 함수대로 일을 실행
+function main(response) {
     console.log('main');
 
-    mariadb.query("SELECT * FROM product", function(err, row) {
+    mariadb.query("SELECT * FROM product", function(err, rows) {
         console.log(rows);
     })
-    response.writeHead(200, {'content-type' : 'text/html'});
-    response.write('Main page');
-    response.end();
+
+    response.writeHead(200, {'Content-Type' : 'text/html'});
+    response.write(main_view);
+    response.end();    
 }
 
-function login(response) { // login 경로로 가면 함수대로 일을 실행
-    console.log('login');
-
-    response.writeHead(200, {'content-type' : 'text/html'});
-    response.write('Login page');
-    response.end();
+function redRacket(response) {
+    fs.readFile('./img/vitmin.jpg', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end(); 
+    })
 }
 
-let handle = {}; // 중괄호 변수 key(이름) : value(홍석기) 변수 사전 상자 (json) 
-handle['/'] = main; // /를 찾으면 main 만남
-handle['/login'] = login; 
+function blueRacket(response) {
+    fs.readFile('./img/lron.jpg', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end(); 
+    })
+}
 
-exports.handle = handle ; // 수출   
+function blackRacket(response) {
+    fs.readFile('./img/gang.jpg', function(err, data) {
+        response.writeHead(200, {'Content-Type' : 'text/html'});
+        response.write(data);
+        response.end(); 
+    })
+}
+
+function order(response, productId) {
+    response.writeHead(200, {'Content-Type' : 'text/html'});
+
+    mariadb.query("INSERT INTO orderlist VALUES (" + productId + ", '" + new Date().toLocaleDateString() + "');", function(err, rows) {
+        console.log(rows);
+    })
+
+    response.write('Thank you for your order! <br> you can check the result on the order list page.');
+    response.end(); 
+}
+
+function orderlist(response) {
+    console.log('orderlist');
+
+    response.writeHead(200, {'Content-Type' : 'text/html'});
+
+    mariadb.query("SELECT * FROM orderlist", function(err, rows) {
+        response.write(orderlist_view);
+
+        rows.forEach(element => {
+            response.write("<tr>" 
+                        + "<td>"+element.product_id+"</td>"
+                        + "<td>"+element.order_date+"</td>"
+                         + "</tr>");
+        });
+        
+        response.write("</table>");
+        response.end();
+    })
+}
+
+
+let handle = {}; // key:value
+handle['/'] = index;
+handle['/order'] = order;
+handle['/orderlist'] = orderlist;
+
+/* image directory */
+handle['/img/vitamin.jpg'] = redRacket;
+handle['/img/lron.jpg'] = blueRacket;
+handle['/img/gang.jpg'] = blackRacket;
+
+exports.handle = handle;   

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign Up</title>
     <style>
         /* 전체 페이지 중앙 정렬 */
         body {
@@ -22,6 +22,7 @@
             font-size: 2.5rem;
         }
 
+        /* 회원가입 폼 스타일 */
         form {
             background-color: white;
             padding: 2rem;
@@ -31,7 +32,8 @@
             text-align: center;
         }
 
-        .login_inputs {
+        /* 입력 필드 스타일 */
+        .signup_inputs {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -39,7 +41,8 @@
             border-radius: 5px;
         }
 
-        #btn_login {
+        /* 회원가입 버튼 스타일 */
+        #btn_signup {
             background-color: rgb(17, 90, 17);
             color: white;
             padding: 10px 20px;
@@ -52,43 +55,48 @@
             transition: background-color 0.3s;
         }
 
-        #btn_login:hover {
+        #btn_signup:hover {
             background-color: darkgoldenrod;
+        }
+
+        /* 반응형 레이아웃 */
+        @media (max-width: 400px) {
+            form {
+                width: 90%;
+            }
         }
     </style>
 </head>
 <body>
     <form>
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
         <label for="txt_id">ID:</label>
-        <input id="txt_id" class="login_inputs" type="text" placeholder="Enter your ID">
+        <input id="txt_id" class="signup_inputs" type="text" placeholder="Enter your ID">
         <br>
         <label for="txt_pw">PW:</label>
-        <input id="txt_pw" class="login_inputs" type="password" placeholder="Enter your Password">
+        <input id="txt_pw" class="signup_inputs" type="password" placeholder="Enter your Password">
         <br>
-        <input id="btn_login" type="button" value="Login" onclick="handleLogin()">
+        <label for="txt_name">Name:</label>
+        <input id="txt_name" class="signup_inputs" type="text" placeholder="Enter your Name">
+        <br>
+        <label for="txt_birth">Birthdate:</label>
+        <input id="txt_birth" class="signup_inputs" type="date">
+        <br>
+        <input id="btn_signup" type="button" value="Sign Up" onclick="handleSignUp()">
     </form>
 
     <script>
-        function handleLogin() {
-            const idValue = document.getElementById('txt_id').value;
-            const pwValue = document.getElementById('txt_pw').value;
+        function handleSignUp() {
+            const idValue = document.getElementById('txt_id').value.trim();
+            const pwValue = document.getElementById('txt_pw').value.trim();
+            const nameValue = document.getElementById('txt_name').value.trim();
+            const birthValue = document.getElementById('txt_birth').value.trim();
 
-            // 정규표현식 조건
-            const idRegex = /^[a-zA-Z0-9]{4,12}$/; // ID: 영문자+숫자 조합 4~12자
-            const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/; // PW: 최소 6자, 문자+숫자 조합
-
-            if (!idRegex.test(idValue)) {
-                alert("ID는 4~12자의 영문자와 숫자만 입력 가능합니다.");
-                return;
+            if (idValue === "" || pwValue === "" || nameValue === "" || birthValue === "") {
+                alert("회원가입 실패! 모든 항목을 입력해 주세요.");
+            } else {
+                alert(`회원가입 성공! ${nameValue}님 환영합니다.`);
             }
-
-            if (!pwRegex.test(pwValue)) {
-                alert("PW는 최소 6자이며, 숫자와 문자를 포함해야 합니다.");
-                return;
-            }
-
-            alert("로그인 성공! 환영합니다.");
         }
     </script>
 </body>

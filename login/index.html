@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang = "ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> 맞춤 영양제 </title>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <style>
+            h1 {
+                text-align: center;
+                font-weight: bold;
+            }
+
+            #txt_welcome {
+                text-align: center; 
+                margin-bottom: 50px;
+            }
+
+            .card {
+                text-align: center;
+            }
+
+            .card_title {
+                font-size: 20px;
+            }
+
+            .card_button {
+                font-size: 25px;
+                width: 150px;
+                height: 30px;
+            }
+
+            .card_img {
+                width: 300px;
+                height: 300px;
+            }
+
+            body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+            .order-list {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            background-color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: rgb(17, 90, 17);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: white;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+            cursor: pointer;
+            color: #bbb;
+        }
+
+        .nav-item i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .nav-item:hover {
+            color: white;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons button {
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .login {
+            background: #f3f3f3;
+            color: black;
+            font-weight: bold;
+        }
+
+        .signup {
+            background: #f3f3f3;
+            color: black;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            width: 1000px; /* 원하는 크기로 조절 */
+            max-width: 100%; /* 반응형 지원 */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <input type="text"  class="search-bar" placeholder="search 전체 검색">
+                </div>
+            </div>
+            <div class="auth-buttons">
+                <a class="login" href="./login.html"><button class="login">로그인</button></a>
+                <a class="signup" href="./signup.html"><button class="signup">가입하기</button></a>
+                <a href="./orderlist.html"  class="order-list">주문 목록</a>
+            </div>
+        </div>
+        <div class="banner">
+            <h1>내 몸을 위한 맞춤 영양제! 건강 습관 시작하기</h1>
+            <p>"맞춤 진단을 통한 결과로 <br> 내 몸에 맞는 <u>최적의 선택</u>을 하세요."</p>
+           
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
+            <div class="card">
+                <img class="card_img" src="./img/vitamin.jpg">
+                <p class="card_title"> Red Racket </p>
+                <input class="card_button" type="button" value="order" 
+                    onclick="location.href='/order?productId=1;'">
+            </div>
+            <div class="card">
+                <img class="card_img" src="./img/lron.jpg">
+                <p class="card_title"> Blue Racket </p>
+                <input class="card_button" type="button" value="order" onclick="alert(2);">
+            </div>
+            <div class="card">
+                <img class="card_img" src="./img/gang.jpg">
+                <p class="card_title"> Black Racket </p>
+                <input class="card_button" type="button" value="order" onclick="alert(3);">
+            </div>
+        </div>
+    </body>
+</html>

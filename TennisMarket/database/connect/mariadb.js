@@ -10,4 +10,4 @@ const conn = mariadb.createConnection(// 연결 통로 만들기
     }
 ) ;
 
-module.exports = conn; // 연결 통로 밖에서 이용
+module.exports = conn; // 연결 통로 밖에서 이용 
